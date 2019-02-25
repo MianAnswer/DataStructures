@@ -17,7 +17,7 @@ public class LinkedListAlgorithm {
     }
        
     //Linked List Constructor
-    public LinkedList() {
+    public LinkedListAlgorithm() {
         head = new Node();
     }
     
