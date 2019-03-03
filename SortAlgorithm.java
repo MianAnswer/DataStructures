@@ -16,9 +16,7 @@ class SortAlgorithm {
                 // then swap values
                 if (arr[k] <= arr[j]) {
                     // Swap
-                    int temp = arr[k];
-                    arr[k] = arr[j];
-                    arr[j] = temp;
+                    swap(arr, j, k);
                     --k;
                 }
                 // Otherwise, exit inner-loop. Values are already in order
@@ -46,9 +44,6 @@ class SortAlgorithm {
         System.out.println("---------------------------------");
     }
 
-    /**
-     * Merge
-     */
     private static int[] mergeSort(int[] arr, int beginning, int end) {
         int middle = (beginning + (end - beginning) / 2);
 
@@ -96,5 +91,58 @@ class SortAlgorithm {
         }
         System.out.println("Sorting... " + "[" + beginning + ", " + end + "]"+ Arrays.toString(mergedArray));
         return mergedArray;
+    }
+
+    public static void quick(int[] arr) {
+        System.out.println("---------------------------------");
+        System.out.println("-----Inside QuickSort method-----\n");
+        System.out.println("Original:    " + Arrays.toString(arr));
+
+        quickSort(arr, 0, arr.length - 1);
+
+        // Final list
+        System.out.println("Sorted:    " + Arrays.toString(arr));
+        System.out.println("\n-----End of QuickSort method-----");
+        System.out.println("---------------------------------");
+    }
+
+    private static void quickSort(int[] arr, int beginning, int end) {
+        if(end - beginning + 1 < 2) {
+            return;
+        }
+
+        int middle = (beginning + (end - beginning) / 2);
+        int pivot = arr[middle];
+        int left = beginning;
+        int right = end;
+
+        while(left != middle || right != middle) {
+            if(arr[left] >= pivot && arr[right] <= pivot) {
+                if(arr[left] == pivot) {
+                    middle = right;
+                } else if(arr[right] == pivot) {
+                    middle = left;
+                }
+                swap(arr, left, right);
+            }
+            if(left != middle && arr[left] <= pivot) {
+                ++left;
+            }
+            if(right != middle && arr[right] >= pivot) {
+                --right;
+            }
+        }
+        System.out.println("Sorting... " + "[" + beginning + ", " + end + "] pivot = " + pivot + "\t" + Arrays.toString(arr));
+        // Left
+        quickSort(arr, beginning, middle - 1);
+        // Right
+        quickSort(arr, middle + 1, end);
+       
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }

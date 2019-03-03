@@ -3,6 +3,7 @@ class Main {
         testLinkedList();
         testInsertion();
         testMerge();
+        testQuick();
     }
 
     private static void testInsertion() {
@@ -13,6 +14,11 @@ class Main {
     private static void testMerge() {
         int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         SortAlgorithm.merge(arr);
+    }
+
+    private static void testQuick() {
+        int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        SortAlgorithm.quick(arr);
     }
  
     private static void testLinkedList() {
